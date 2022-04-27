@@ -20,6 +20,7 @@ class _SignUpPageState extends State<SignUpPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        appBar: AppBar(),
         resizeToAvoidBottomInset: false,
         body: Form(
           key: _formkey,
@@ -42,11 +43,11 @@ class _SignUpPageState extends State<SignUpPage> {
                     controller: username,
                     validator: (value) {
                       if (value!.isEmpty) {
-                        return 'Enter your username';
+                        return 'Enter Your Username';
                       } else if (value.length >= 10) {
-                        return 'Name too long';
+                        return 'Name too Long';
                       } else if (value.length <= 5) {
-                        return 'Name too short';
+                        return 'Name too Short';
                       }
                       return null;
                     },
@@ -82,11 +83,11 @@ class _SignUpPageState extends State<SignUpPage> {
                     obscureText: !checkboxvalue,
                     validator: (value) {
                       if (value!.isEmpty) {
-                        return 'please enter the password';
+                        return 'Please Enter the Password';
                       } else if (value.length >= 10) {
-                        return 'name too long';
+                        return 'Name too Long';
                       } else if (value.length <= 5) {
-                        return 'name too short';
+                        return 'Name too Short';
                       }
                       return null;
                     },
@@ -122,11 +123,11 @@ class _SignUpPageState extends State<SignUpPage> {
                     obscureText: !checkboxvalue,
                     validator: (value) {
                       if (value!.isEmpty) {
-                        return 'please enter the password';
+                        return 'Please Enter the Password';
                       } else if (value.length >= 10) {
-                        return 'name too long';
+                        return 'Name too Long';
                       } else if (value.length <= 5) {
-                        return 'name too short';
+                        return 'Name too Short';
                       }
                       return null;
                     },
@@ -161,37 +162,24 @@ class _SignUpPageState extends State<SignUpPage> {
                             MaterialPageRoute(
                                 builder: (context) => HomePage()));
                       } else if (password.text != conpassword.text) {
-                        ScaffoldMessenger.of(context).showSnackBar(
-                          SnackBar(
-                            backgroundColor: Colors.black,
-                            content: Text(
-                              'LOGIN FAILED',
-                              style: TextStyle(
-                                  color: Colors.pink,
-                                  fontSize: 15,
-                                  fontWeight: FontWeight.bold),
-                            ),
-                            duration: const Duration(seconds: 1),
-                            action:
-                                SnackBarAction(label: 'OK', onPressed: () {}),
-                          ),
-                        );
+                        showDialog(
+                            context: context,
+                            builder: (context) {
+                              return Dialog(
+                                child: Text(
+                                  "Login Failed",
+                                  style: TextStyle(fontSize: 15),
+                                ),
+                              );
+                            });
                       } else {
-                        ScaffoldMessenger.of(context).showSnackBar(
-                          SnackBar(
-                            backgroundColor: Colors.black,
-                            content: Text(
-                              'LOGIN FAILED',
-                              style: TextStyle(
-                                  color: Colors.pink,
-                                  fontSize: 15,
-                                  fontWeight: FontWeight.bold),
-                            ),
-                            duration: const Duration(seconds: 1),
-                            action:
-                                SnackBarAction(label: 'OK', onPressed: () {}),
-                          ),
-                        );
+                        showDialog(
+                            context: context,
+                            builder: (context) {
+                              return Dialog(
+                                child: Text("Login Failed"),
+                              );
+                            });
                       }
                     },
                     child: Text(

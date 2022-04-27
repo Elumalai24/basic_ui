@@ -43,7 +43,8 @@ class _LoginPageState extends State<LoginPage> {
                     validator: (value) {
                       if (value!.isEmpty) {
                         return 'Enter your username';
-                      } else if (value.length >= 10) {
+                      }
+                      if (value.length >= 10) {
                         return 'Name too long';
                       } else if (value.length <= 5) {
                         return 'Name too short';
@@ -158,21 +159,13 @@ class _LoginPageState extends State<LoginPage> {
                             MaterialPageRoute(
                                 builder: (context) => HomePage()));
                       } else {
-                        ScaffoldMessenger.of(context).showSnackBar(
-                          SnackBar(
-                            backgroundColor: Colors.black,
-                            content: Text(
-                              'LOGIN FAILED',
-                              style: TextStyle(
-                                  color: Colors.pink,
-                                  fontSize: 15,
-                                  fontWeight: FontWeight.bold),
-                            ),
-                            duration: const Duration(seconds: 1),
-                            action:
-                                SnackBarAction(label: 'OK', onPressed: () {}),
-                          ),
-                        );
+                        showDialog(
+                            context: context,
+                            builder: (context) {
+                              return Dialog(
+                                child: Text("Login Failed"),
+                              );
+                            });
                       }
                     },
                     child: Text(
